@@ -7,10 +7,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Schema\Blueprint;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens;
+    use HasFactory;
+    use Notifiable;
+    use \Orbit\Concerns\Orbital;
+    public static $driver = 'yaml';
+
+
 
     /**
      * The attributes that are mass assignable.
@@ -42,4 +49,21 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public static function schema(Blueprint $table)
+    {
+        $table->string('name');
+        $table->string('email');
+        $table->string('password');
+    }
+
+    public function getKeyName()
+    {
+        return 'email';
+    }
+
+    public function getIncrementing()
+    {
+        return false;
+    }
 }
