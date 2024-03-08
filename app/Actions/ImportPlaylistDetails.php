@@ -51,7 +51,8 @@ class ImportPlaylistDetails
         $playlistData = [
             'id' => $playlistDetails->id,
             'title' => $playlistDetails->snippet->localized->title,
-            'channel_id' => $playlistDetails->snippet->channelId
+            'channel_id' => $playlistDetails->snippet->channelId,
+            'meta' => json_encode($playlistDetails),
         ];
 
         return (new AddPlaylist)->handle($playlistData);
@@ -66,31 +67,35 @@ class ImportPlaylistDetails
         );
     }
 
-    private function updatePlaylistItems($id)
+    private function updatePlaylistItems($playlist)
     {
+        $videos = [];
         $token = '';
         do {
-            dump([$id, $token]);
-            $playlistItems = $this->getPlaylistItems($id, $token);
+
+            $playlistItems = $this->getPlaylistItems($playlist->id, $token);
 
 
             collect(Arr::get($playlistItems, 'results'))
-                ->each(function ($videoDetails) use ($id) {
+                ->each(function ($videoDetails) use (&$videos) {
 
                     $videoData = [
                         'id' => $videoDetails->contentDetails->videoId,
                         'title' => $videoDetails->snippet->title,
                         'description' => $videoDetails->snippet->description,
-                        'playlist_id' => $id,
-                        'position' => $videoDetails->snippet->position,
                         'published_at' => null,
                     ];
 
-                    (new AddVideo)->handle($videoData);
+                    $video = (new AddVideo)->handle($videoData);
+                    $videos[$video->id] = [
+                        'position' => (int)$videoDetails->snippet->position + 1,
+                    ];
                 });
 
             $token = Arr::get($playlistItems, 'info.nextPageToken');
         } while ($token);
+
+        $playlist->videos()->sync($videos);
     }
 
     public function handle($id): void
@@ -108,6 +113,6 @@ class ImportPlaylistDetails
         dump('done with playlist & channel metadata');
 
         // get playlist items
-        $this->updatePlaylistItems($id);
+        $this->updatePlaylistItems($playlist);
     }
 }

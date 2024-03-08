@@ -41,7 +41,8 @@ class PlaylistResource extends Resource
                 Tables\Columns\TextColumn::make('slug')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('show.name')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('videos_count')
                     ->counts('videos'),
                 Tables\Columns\TextColumn::make('channel.title')

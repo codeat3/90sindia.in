@@ -17,7 +17,10 @@ class ChannelFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'id' => fake()->uuid,
+            'title' => fake()->name,
+            'url' => fake()->url,
+            'custom_url' => fake()->name,
         ];
     }
 }

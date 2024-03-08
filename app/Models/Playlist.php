@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Playlist extends Model
 {
@@ -28,6 +29,11 @@ class Playlist extends Model
         'show_id',
         'channel_id',
         'url',
+        'meta',
+    ];
+
+    protected $casts = [
+        'meta' => 'array',
     ];
 
 
@@ -64,9 +70,11 @@ class Playlist extends Model
         return $this->belongsTo(Channel::class);
     }
 
-    public function videos(): HasMany
+    public function videos(): BelongsToMany
     {
-        return $this->hasMany(Video::class);
+        return $this->belongsToMany(Video::class)
+            ->withPivot('position')
+            ->orderBy('position');
     }
 
     public static function getForm($showId = null): array

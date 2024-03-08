@@ -38,8 +38,6 @@ class VideoResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('title')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('playlist.name')
-                    ->searchable(),
                 Tables\Columns\TextColumn::make('url')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
@@ -51,9 +49,7 @@ class VideoResource extends Resource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
-            ->filters([
-                //
-            ])
+            ->filters([])
             ->actions([
                 Tables\Actions\EditAction::make(),
             ])
@@ -67,7 +63,7 @@ class VideoResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\PlaylistsRelationManager::class,
         ];
     }
 

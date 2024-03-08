@@ -27,6 +27,11 @@ class Show extends Model
         'slug',
     ];
 
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
+
 
     protected function name(): Attribute
     {

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignUlid('show_id')->index();
             $table->string('channel_id')->nullable()->index();
             $table->string('url');
+            $table->json('meta')->nullable();
 
             $table->timestamps();
         });

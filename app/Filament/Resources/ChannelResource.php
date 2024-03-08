@@ -41,8 +41,8 @@ class ChannelResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('custom_url')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('videos_count')
-                    ->counts('videos'),
+                // Tables\Columns\TextColumn::make('videos_count')
+                //     ->counts('videos'),
 
             ])
             ->filters([

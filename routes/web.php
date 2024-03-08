@@ -1,6 +1,7 @@
 <?php
 
-use App\Livewire\Shows;
+use App\Livewire\ListShows;
+use App\Livewire\ShowShow;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,4 +15,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', Shows::class);
+Route::get('/shows', ListShows::class)->name('shows.index');
+Route::get('/shows/{slug}', ShowShow::class)->name('shows.show');

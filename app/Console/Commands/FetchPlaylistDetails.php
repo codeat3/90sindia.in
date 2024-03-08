@@ -28,9 +28,11 @@ class FetchPlaylistDetails extends Command
      */
     public function handle()
     {
-        Playlist::select(['id'])->orderByDesc('id')->each(function (Playlist $playlist) {
-            $this->info('Playlist ID: ' . $playlist->id);
-            (new ImportPlaylistDetails())->handle($playlist->id);
-        });
+        Playlist::select(['id'])
+            ->orderByDesc('id')
+            ->each(function (Playlist $playlist) {
+                $this->info('Playlist ID: ' . $playlist->id);
+                (new ImportPlaylistDetails())->handle($playlist->id);
+            });
     }
 }

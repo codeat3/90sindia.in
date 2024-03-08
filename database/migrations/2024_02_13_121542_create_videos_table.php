@@ -18,12 +18,16 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->string('slug')->nullable()->index();
             $table->text('description')->nullable();
-            $table->string('playlist_id')->nullable()->index();
             $table->string('url')->nullable();
             $table->dateTime('published_at')->nullable();
-            $table->integer('position')->nullable();
 
             $table->timestamps();
+        });
+
+        Schema::create('playlist_video', function (Blueprint $table) {
+            $table->string('playlist_id')->index();
+            $table->string('video_id')->index();
+            $table->integer('position')->index();
         });
     }
 

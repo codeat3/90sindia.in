@@ -12,8 +12,9 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-#[ScopedBy([SortedVideos::class])]
+// #[ScopedBy([SortedVideos::class])]
 class Video extends Model
 {
     use HasFactory;
@@ -28,7 +29,6 @@ class Video extends Model
         'title',
         'slug',
         'description',
-        'playlist_id',
         'url',
         'published_at',
         'position',
@@ -64,15 +64,11 @@ class Video extends Model
     }
 
 
-    public function playlist(): BelongsTo
+    public function playlists(): BelongsToMany
     {
-        return $this->belongsTo(Playlist::class);
+        return $this->belongsToMany(Playlist::class);
     }
 
-    public function channel(): BelongsTo
-    {
-        return $this->belongsTo(Channel::class);
-    }
 
     public static function getForm(): array
     {
@@ -82,9 +78,9 @@ class Video extends Model
             TextInput::make('slug')
                 ->maxLength(255),
             Select::make('playlist_id')
-                ->relationship('playlist', 'name'),
+                ->relationship('playlist', 'title'),
             Select::make('channel_id')
-                ->relationship('channel', 'name'),
+                ->relationship('channel', 'title'),
             TextInput::make('url')
                 ->required()
                 ->maxLength(255),
