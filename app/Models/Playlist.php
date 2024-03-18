@@ -39,7 +39,6 @@ class Playlist extends Model
 
     public $incrementing = false;
 
-
     protected function title(): Attribute
     {
         return Attribute::make(

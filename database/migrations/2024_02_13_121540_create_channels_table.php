@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('slug')->nullable();
             $table->string('url')->nullable();
             $table->string('custom_url')->nullable();
+            $table->json('meta')->nullable();
 
             $table->timestamps();
         });

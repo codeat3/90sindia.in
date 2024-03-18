@@ -16,7 +16,8 @@ class ShowShow extends Component
 
     protected function getShow()
     {
-        return Show::with(['playlists', 'playlists.channel'])->whereSlug($this->slug)
+        return Show::with(['playlists', 'playlists.channel'])
+            ->whereSlug($this->slug)
             ->first();
     }
 

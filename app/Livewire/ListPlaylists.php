@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Playlist;
 use App\Models\Show;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
@@ -9,13 +10,11 @@ use Livewire\Component;
 class ListPlaylists extends Component
 {
 
-    public string $title;
-    public Collection $playlists;
-
-
     protected function getPlaylists()
     {
-        return $this->playlists;
+        return Playlist::orderBy('show_id')
+            ->oldest()
+            ->get();
     }
 
     public function render()

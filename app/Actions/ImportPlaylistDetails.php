@@ -78,12 +78,14 @@ class ImportPlaylistDetails
 
             collect(Arr::get($playlistItems, 'results'))
                 ->each(function ($videoDetails) use (&$videos) {
-
                     $videoData = [
                         'id' => $videoDetails->contentDetails->videoId,
                         'title' => $videoDetails->snippet->title,
                         'description' => $videoDetails->snippet->description,
-                        'published_at' => null,
+                        'published_at' => (isset($videoDetails->contentDetails->videoPublishedAt))
+                            ? Carbon::parse($videoDetails->contentDetails->videoPublishedAt)->toDateTimeString()
+                            : null,
+                        'meta' => json_encode($videoDetails)
                     ];
 
                     $video = (new AddVideo)->handle($videoData);

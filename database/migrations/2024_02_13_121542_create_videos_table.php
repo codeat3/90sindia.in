@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->string('url')->nullable();
             $table->dateTime('published_at')->nullable();
+            $table->json('meta')->nullable();
 
             $table->timestamps();
         });

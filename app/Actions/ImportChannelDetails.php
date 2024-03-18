@@ -47,10 +47,12 @@ class ImportChannelDetails
     {
         $channelDetails = $this->getChannelDetails($id);
 
+
         $channelData = [
             'id' => $channelDetails->id,
             'title' => $channelDetails->snippet->localized->title,
-            'custom_url' => $channelDetails->snippet->customUrl ?? ''
+            'custom_url' => $channelDetails->snippet->customUrl ?? '',
+            'meta' => json_encode($channelDetails),
         ];
         return (new AddChannel)->handle($channelData);
     }

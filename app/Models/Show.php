@@ -45,7 +45,8 @@ class Show extends Model
 
     public function playlists(): HasMany
     {
-        return $this->hasMany(Playlist::class);
+        return $this->hasMany(Playlist::class)
+            ->oldest();
     }
 
     public function videos(): HasManyThrough

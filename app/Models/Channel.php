@@ -24,6 +24,11 @@ class Channel extends Model
         'slug',
         'url',
         'custom_url',
+        'meta',
+    ];
+
+    protected $casts = [
+        'meta' => 'array',
     ];
 
     public $incrementing = false;
