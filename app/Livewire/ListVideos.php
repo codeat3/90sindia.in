@@ -7,13 +7,21 @@ use Livewire\Component;
 
 class ListVideos extends Component
 {
+    public string $title = '90s shows';
+
+    public string $playlist_id = '';
 
     protected function getVideos()
     {
         return Video::with(['playlists'])
-            ->inRandomOrder()
-            // ->take(5)
-            ->get();
+            ->when($this->playlist_id, function ($query) {
+                $query->whereHas('playlists', function ($q) {
+                    $q->where('playlist_id', $this->playlist_id);
+                });
+            }, function ($query) {
+                $query->inRandomOrder();
+            })
+            ->paginate();
     }
     public function render()
     {

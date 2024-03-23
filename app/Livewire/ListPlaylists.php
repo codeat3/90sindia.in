@@ -9,18 +9,25 @@ use Livewire\Component;
 
 class ListPlaylists extends Component
 {
+    public string $title = '90s shows';
+    public string $show_id = '';
 
     protected function getPlaylists()
     {
-        return Playlist::orderBy('show_id')
+        return Playlist::with(['channel'])
+            ->orderBy('show_id')
+            ->when($this->show_id, function ($query) {
+                $query->where('show_id', $this->show_id);
+            })
             ->oldest()
-            ->get();
+            ->paginate();
     }
 
     public function render()
     {
         return view('livewire.list-playlists', [
             'playlists' => $this->getPlaylists(),
+            'title' => $this->title,
         ]);
     }
 }

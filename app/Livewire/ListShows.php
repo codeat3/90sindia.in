@@ -10,7 +10,7 @@ class ListShows extends Component
 
     protected function getShows()
     {
-        return Show::orderBy('name', 'asc')->get();
+        return Show::orderBy('name', 'asc')->paginate();
     }
 
     public function render()

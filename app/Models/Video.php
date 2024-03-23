@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Spatie\Url\Url;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use App\Models\Scopes\SortedVideos;
 use Filament\Forms\Components\Select;
@@ -37,7 +38,7 @@ class Video extends Model
     ];
 
     protected $casts = [
-        'meta' => 'array',
+        'meta' => 'json',
     ];
 
     public $incrementing = false;
@@ -69,6 +70,15 @@ class Video extends Model
         );
     }
 
+    protected function thumbnail(): Attribute
+    {
+        return Attribute::make(
+            get: function (mixed $value, array $attributes) {
+                $metaArr = json_decode(json_decode(Arr::get($attributes, 'meta'), true), true);
+                return Arr::get($metaArr, 'snippet.thumbnails.standard.url');
+            },
+        );
+    }
 
     public function playlists(): BelongsToMany
     {

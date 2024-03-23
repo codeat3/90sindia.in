@@ -2,10 +2,10 @@
 
 namespace App\Livewire;
 
-use App\Models\Show;
 use Livewire\Component;
+use App\Models\Playlist;
 
-class ShowShow extends Component
+class ShowPlaylist extends Component
 {
     public string $slug;
 
@@ -14,16 +14,16 @@ class ShowShow extends Component
         $this->slug = $slug;
     }
 
-    protected function getShow()
+    protected function getPlaylist()
     {
-        return Show::whereSlug($this->slug)
+        return Playlist::whereSlug($this->slug)
             ->first();
     }
 
     public function render()
     {
-        return view('livewire.show-show', [
-            'show' => $this->getShow(),
+        return view('livewire.show-playlist', [
+            'playlist' => $this->getPlaylist(),
         ]);
     }
 }

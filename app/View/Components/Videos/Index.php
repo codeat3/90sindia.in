@@ -5,6 +5,7 @@ namespace App\View\Components\Videos;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\View\Component;
 
 class Index extends Component
@@ -13,7 +14,7 @@ class Index extends Component
      * Create a new component instance.
      */
     public function __construct(
-        protected Collection $videos,
+        protected Collection|LengthAwarePaginator $videos,
     ) {
         //
     }

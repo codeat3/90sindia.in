@@ -52,7 +52,7 @@ class ImportChannelDetails
             'id' => $channelDetails->id,
             'title' => $channelDetails->snippet->localized->title,
             'custom_url' => $channelDetails->snippet->customUrl ?? '',
-            'meta' => json_encode($channelDetails),
+            'meta' => $channelDetails,
         ];
         return (new AddChannel)->handle($channelData);
     }

@@ -52,7 +52,7 @@ class ImportPlaylistDetails
             'id' => $playlistDetails->id,
             'title' => $playlistDetails->snippet->localized->title,
             'channel_id' => $playlistDetails->snippet->channelId,
-            'meta' => json_encode($playlistDetails),
+            'meta' => $playlistDetails,
         ];
 
         return (new AddPlaylist)->handle($playlistData);
@@ -85,7 +85,7 @@ class ImportPlaylistDetails
                         'published_at' => (isset($videoDetails->contentDetails->videoPublishedAt))
                             ? Carbon::parse($videoDetails->contentDetails->videoPublishedAt)->toDateTimeString()
                             : null,
-                        'meta' => json_encode($videoDetails)
+                        'meta' => $videoDetails
                     ];
 
                     $video = (new AddVideo)->handle($videoData);
