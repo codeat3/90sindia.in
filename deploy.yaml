@@ -28,6 +28,7 @@ tasks:
     - artisan:storage:link
     - artisan:optimize
     - artisan:down
+    - artisan:migrate
     - npm:install
     - npm:run:prod
     - artisan:up
