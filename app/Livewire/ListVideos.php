@@ -21,7 +21,7 @@ class ListVideos extends Component
             }, function ($query) {
                 $query->inRandomOrder();
             })
-            ->paginate();
+            ->paginate(10);
     }
     public function render()
     {

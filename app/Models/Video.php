@@ -74,7 +74,7 @@ class Video extends Model
     {
         return Attribute::make(
             get: function (mixed $value, array $attributes) {
-                $metaArr = json_decode(json_decode(Arr::get($attributes, 'meta'), true), true);
+                $metaArr = Arr::get($attributes, 'meta');
                 return Arr::get($metaArr, 'snippet.thumbnails.standard.url');
             },
         );

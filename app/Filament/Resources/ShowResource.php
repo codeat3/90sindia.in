@@ -42,7 +42,8 @@ class ShowResource extends Resource
                 Tables\Columns\TextColumn::make('slug')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('playlists_count')
-                    ->counts('playlists'),
+                    ->counts('playlists')
+                    ->sortable(),
                 // Tables\Columns\TextColumn::make('videos_count')
                 //     ->counts('videos'),
                 Tables\Columns\TextColumn::make('created_at')

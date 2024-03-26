@@ -32,11 +32,9 @@
       <div class="mt-8 md:mt-0 md:order-1">
         <p class="text-base text-center text-gray-400">
           <span class="mx-auto mt-2 text-sm text-gray-500">
-            Copyright © 2020 - 2021
-            <a href="https://unwrapped.design" class="mx-2 text-blue-500 hover:text-gray-500" rel="noopener noreferrer">
-              @unwrappedHQ
-            </a>
-            .Since 2020
+            Copyright © {{ date('Y') }} -
+            <a href="https://codeat3.co" class="mx-2 text-blue-500 hover:text-gray-500" rel="noopener noreferrer">@codeat3</a>
+            - Since 2024
           </span>
         </p>
       </div>

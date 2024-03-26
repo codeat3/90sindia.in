@@ -10,7 +10,9 @@ class ListShows extends Component
 
     protected function getShows()
     {
-        return Show::orderBy('name', 'asc')->paginate();
+        return Show::withCount('playlists')
+            ->orderBy('name', 'asc')
+            ->paginate();
     }
 
     public function render()
