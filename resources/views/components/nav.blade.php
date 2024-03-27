@@ -1,4 +1,4 @@
-<nav x-data="{ isOpen: false }" class="relative bg-white shadow dark:bg-gray-800">
+<nav x-data="{ isOpen: false }" class="relative bg-white border-b-2 dark:bg-gray-800">
     <div class="container px-6 py-4 mx-auto md:flex md:justify-between md:items-center">
         <div class="flex items-center justify-between">
             <a href="{{ route('homepage') }}" class="font-bold">

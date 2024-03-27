@@ -1,6 +1,14 @@
-<x-wrapper>
-    <h1 class="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl dark:text-white mb-10">
-        Videos of <span class="underline decoration-blue-500">{{ $this->title }}</span>
-    </h1>
-    <x-videos.index :videos="$videos" />
-</x-wrapper>
+<div>
+    @if ($this->playlist_id)
+        <x-h2-title>
+            Videos of <span class="underline decoration-blue-500">{{ $this->title }}</span>
+        </x-h2-title>
+    @else
+        <x-h1-title>
+            Videos of <span class="underline decoration-blue-500">{{ $this->title }}</span>
+        </x-h1-title>
+    @endif
+    <section class="container px-10 mx-auto">
+        <x-videos.index :videos="$videos" />
+    </section>
+</div>

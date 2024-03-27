@@ -17,7 +17,9 @@
 <body class="font-display">
     <x-nav />
 
-    {{ $slot }}
+    <x-wrapper>
+        {{ $slot }}
+    </x-wrapper>
 
     <x-footer />
 </body>

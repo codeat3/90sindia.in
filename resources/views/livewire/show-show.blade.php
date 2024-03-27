@@ -1,6 +1,6 @@
-<x-wrapper>
-    <h1 class="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl dark:text-white mb-10">
+<div>
+    <x-h1-title>
         <span class="underline decoration-blue-500">{{ $show->name }}</span>
-    </h1>
+    </x-h1-title>
     <livewire:list-playlists :title="$show->name" :show_id="$show->id" />
-</x-wrapper>
+</div>
