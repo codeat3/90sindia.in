@@ -2,7 +2,6 @@
     <div class="container px-6 py-4 mx-auto md:flex md:justify-between md:items-center">
         <div class="flex items-center justify-between">
             <a href="{{ route('homepage') }}" class="font-bold">
-                {{-- <img class="w-auto h-6 sm:h-7" src="https://merakiui.com/images/full-logo.svg" alt=""> --}}
                 {{ config('app.name') }}
             </a>
 
