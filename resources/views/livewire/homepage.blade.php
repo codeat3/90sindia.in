@@ -1,4 +1,4 @@
-<x-wrapper>
+<div>
     <div class="container px-6 py-16 mx-auto text-center">
         <div class="max-w-lg mx-auto">
             <h1 class="text-3xl font-semibold text-gray-800 dark:text-white lg:text-4xl">
@@ -11,4 +11,4 @@
         </div>
     </div>
 
-</x-wrapper>
+</div>
